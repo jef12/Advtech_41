@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HTML5 Canvas - experiments</title>
+</head>
+
+<body>
+
+<!-- make a rectangular canvas area. To avoid distorted visuals, set width and height the old-school way -->
+    <canvas width="500" height="300" id="myCanvas">
+    	Sorry, Your browser doesn't support the HTML5 canvas tag.
+    </canvas>
+
+	<script>
+		var myCanvas = document.getElementById("myCanvas");
+		//choose the rendering context and its built-in drawing functions
+		var ctx = myCanvas.getContext("2d");
+		
+		/********** CREATE A RECTANGLE *********/
+		//use fillRect(starting x, starting y, width, height);
+		ctx.fillRect(20, 35, 100, 15);
+		/********** end CREATE A RECTANGLE *********/
+		
+		/********** CREATE A RECTANGLE STROKE *********/
+		//use a similar function to just create the stroke
+		ctx.strokeRect(130, 35, 50, 35);
+		/********** end CREATE A RECTANGLE *********/
+		
+		/********** CREATE A MORE COMPLEX PATH *********/
+		//starting a line
+		ctx.beginPath();
+		//lift the pen and move it to where the line should start
+		ctx.moveTo(40, 200);
+		//move the pen but actually draw (leave in contact with surface)
+		ctx.lineTo(70, 155);
+		ctx.lineTo(70, 100);
+		ctx.moveTo(100, 200);
+		//draw a curve using arc(center-x,center-y, radius, start angle, end angle, counterclockwise);
+		ctx.arc(200,200,100,600, Math.PI*4, false);
+		//then fill or stroke that path:
+		ctx.stroke();
+		/********** end CREATE A MORE COMPLEX PATH *********/
+		var img = new Image();
+		//event handler: if the image source loads.....
+		img.addEventListener("load", function(){
+			//...put it on the canvas
+			ctx.drawImage(img, 350, 75, 200, 200)
+		}, false);
+		//give the object a source, which triggers the 'load' event
+		img.src="img/Jellyfish.jpg";
+		
+		/********** USING IMAGES *********/
+
+		/********** end USING IMAGES *********/
+		
+	</script>
+
+</body>
+</html>
